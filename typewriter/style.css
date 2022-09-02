@@ -1,0 +1,70 @@
+:root {
+    --bg-color: #111111;
+    --text-main-color: #f39f4f;
+    --text-subtitle-color: #bfbcb0;
+    --animation-duration-typewriter: 2s;
+}
+
+body {
+    background: var(--bg-color);
+    color: var(--text-main-color);
+    font-family: "Helvetica Neue", "helvetica", "Arial", sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    display: grid;
+    place-content: center;
+    text-align: center;
+}
+
+h1 {
+    font-size: clamp(1rem, 3vw + 1rem, 4rem);
+    position: relative;
+    font-family: "SF Mono", "Menlo", monospace;
+    position: relative;
+    width: max-content;
+}
+
+h1::before, h1::after {
+    content: '';
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    position: absolute; /* Absolute relative to parent element if it's relative */
+}
+
+h1::before {
+    background: var(--bg-color);
+    animation: typewriter var(--animation-duration-typewriter) steps(8) forwards;
+}
+
+@keyframes typewriter {
+    to { left: 100% }
+}
+
+.subtitle {
+    color: var(--text-subtitle-color);
+    font-size: 1.5rem;
+    font-weight: 500;
+    opacity: 0;
+    animation: subtitleAnimation 1.5s forwards;
+    animation-delay: var(--animation-duration-typewriter);
+}
+
+@keyframes subtitleAnimation {
+    to { opacity: 1 }
+}
+
+h1::after {
+    opacity: 1;
+    width: 0.58em;
+    background: #633;
+    animation: typewriter var(--animation-duration-typewriter) steps(8) forwards,
+               blink 0.6s infinite calc(var(--animation-duration-typewriter) + var(--animation-duration-typewriter) / 8);
+}
+
+@keyframes blink {
+    0% { opacity: 0 }
+    50% { opacity: 1 }
+    100% { opacity: 0 }
+}
